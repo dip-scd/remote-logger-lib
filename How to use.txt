@@ -1,0 +1,19 @@
+How to use:
+
+1) Create project based on this source and add path to the android.jar to the project's build path.
+
+2) Add this project as dependency to the project where you plan to use remote logger. In case of Eclipse you should also place mark (in the checkbox) for this project in the Properties->Java Build Path->Order and Export screen.
+
+2a) Specify your value for the D.SERVER_URL static field (in case you'll deploy your own server which is recommended).
+
+3) Add folowing permissions to the your project:
+	android.permission.INTERNET
+	android.permission.READ_PHONE_STATE
+
+	Second one needed for reading phome IMEI. If you'll not add it, random number will be used as device ID each launch.
+
+4) Put following code at the some start point in the application (usually application's or main activity's OnCreate):
+
+	D.enableEverything(context);
+
+5) Use D.d("my debug message") where needed. You can also use D.i(), D.w(), D.e() for different severeties. D.e() accepts Exception as input. D.logCurrentStackTrace() prints stack trace to the remote log.
